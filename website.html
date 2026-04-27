@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Join the Creator Pilot Program</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-font-smoothing: antialiased; }
+
+  html, body {
+    height: 100%;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue",
+      Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji", sans-serif;
+    background: #0e0e10;
+    color: #161823;
+  }
+
+  body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+  }
+
+  /* mobile-style frame */
+  .phone {
+    position: relative;
+    width: 100%;
+    max-width: 420px;
+    aspect-ratio: 9 / 16;
+    background: linear-gradient(180deg, #ffffff 0%, #fff5f7 60%, #ffd8e1 100%);
+    border-radius: 28px;
+    overflow: hidden;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.45), 0 6px 18px rgba(0,0,0,0.3);
+    padding: 28px 26px 22px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* hero illustration */
+  .hero {
+    display: flex;
+    justify-content: center;
+    margin-top: 8px;
+    margin-bottom: 18px;
+  }
+
+  .hero svg,
+  .hero img {
+    width: 90%;
+    height: auto;
+    display: block;
+  }
+
+  /* gentle bobbing on the illustration */
+  .float-soft { animation: bob 4.2s ease-in-out infinite; transform-origin: center; }
+  @keyframes bob {
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(-6px); }
+  }
+
+  h1 {
+    font-size: 26px;
+    font-weight: 800;
+    line-height: 1.18;
+    text-align: center;
+    color: #111;
+    letter-spacing: -0.2px;
+    margin-bottom: 14px;
+  }
+
+  .desc {
+    font-size: 14px;
+    line-height: 1.55;
+    text-align: center;
+    color: #5a5d6a;
+    padding: 0 4px;
+    margin-bottom: 18px;
+  }
+  .desc .learn { color: #161823; font-weight: 700; cursor: pointer; }
+
+  .eligible-block {
+    text-align: center;
+    margin: 4px auto 16px;
+  }
+
+  .eligible {
+    text-align: center;
+    font-weight: 800;
+    font-size: 17px;
+    color: #111;
+    margin-bottom: 10px;
+  }
+
+  .check-row {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-size: 14.5px;
+    color: #2a2c36;
+  }
+  .check-row .tick {
+    color: #1ec77a;
+    font-size: 20px;
+    font-weight: 900;
+    line-height: 1;
+  }
+  .check-row b { color: #161823; }
+
+  .terms {
+    font-size: 12.5px;
+    line-height: 1.5;
+    text-align: left;
+    color: #6b6e7a;
+    padding: 0 2px;
+    margin-top: 4px;
+    margin-bottom: 14px;
+  }
+  .terms b { color: #161823; font-weight: 700; }
+
+  /* CTA button */
+  .cta-wrap {
+    position: relative;
+    padding: 0 2px;
+  }
+  .cta-wrap::before {
+    content: "";
+    position: absolute;
+    inset: -6px -8px;
+    background: radial-gradient(60% 80% at 50% 50%, rgba(124, 90, 240, 0.45), transparent 70%);
+    border-radius: 22px;
+    filter: blur(10px);
+    z-index: 0;
+    animation: glow 1.8s ease-in-out infinite;
+  }
+  @keyframes glow {
+    0%, 100% { opacity: 0.55; transform: scale(0.98); }
+    50%      { opacity: 1;    transform: scale(1.03); }
+  }
+
+  .cta {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    border: none;
+    color: #fff;
+    font-size: 19px;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+    padding: 16px 0;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #2f6df6 0%, #6a3df0 50%, #a73fe6 100%);
+    box-shadow:
+      inset 0 -3px 0 rgba(0,0,0,0.08),
+      0 8px 18px rgba(106, 61, 240, 0.4);
+    cursor: pointer;
+    transition: transform 0.12s ease, box-shadow 0.2s ease;
+    animation: pulse 1.8s ease-in-out infinite;
+  }
+  .cta:hover  { transform: translateY(-1px); }
+  .cta:active { transform: translateY(1px); box-shadow: 0 4px 10px rgba(254,44,85,0.35); }
+
+  @keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50%      { transform: scale(1.02); }
+  }
+
+  /* floating emojis layered above content */
+  .emoji {
+    position: absolute;
+    font-size: 96px;
+    line-height: 1;
+    pointer-events: none;
+    opacity: 0;
+    z-index: 5;
+    filter: drop-shadow(0 6px 10px rgba(0,0,0,0.18));
+  }
+
+  .emoji.point  { animation: pop1 15s ease-in-out infinite; }
+  .emoji.stars  { animation: pop2 15s ease-in-out infinite; }
+  .emoji.clap   { animation: pop3 15s ease-in-out infinite; }
+
+  /* pointing down hand — appears around middle of screen, mid-text */
+  @keyframes pop1 {
+    0%, 12%   { opacity: 0; transform: translate(-50%, 30px) scale(0.6) rotate(-8deg); }
+    18%       { opacity: 1; transform: translate(-50%, 0)    scale(1.05) rotate(0deg); }
+    32%       { opacity: 1; transform: translate(-50%, -4px) scale(1)    rotate(2deg); }
+    40%, 100% { opacity: 0; transform: translate(-50%, -20px) scale(0.7) rotate(-4deg); }
+  }
+
+  /* star-eyes face */
+  @keyframes pop2 {
+    0%, 42%   { opacity: 0; transform: translate(-50%, 30px) scale(0.6); }
+    50%       { opacity: 1; transform: translate(-50%, 0)    scale(1.08); }
+    62%       { opacity: 1; transform: translate(-50%, -4px) scale(1); }
+    70%, 100% { opacity: 0; transform: translate(-50%, -20px) scale(0.7); }
+  }
+
+  /* clapping hands */
+  @keyframes pop3 {
+    0%, 72%   { opacity: 0; transform: translate(-50%, 30px) scale(0.6) rotate(-6deg); }
+    80%       { opacity: 1; transform: translate(-50%, 0)    scale(1.08) rotate(0deg); }
+    92%       { opacity: 1; transform: translate(-50%, -2px) scale(1)    rotate(4deg); }
+    100%      { opacity: 0; transform: translate(-50%, -16px) scale(0.7) rotate(-2deg); }
+  }
+
+  /* placement of emojis (centered horizontally, varied vertically) */
+  .emoji.point { left: 52%; top: 56%; }
+  .emoji.stars { left: 50%; top: 44%; }
+  .emoji.clap  { left: 50%; top: 48%; }
+
+  @media (max-width: 380px) {
+    h1   { font-size: 23px; }
+    .desc{ font-size: 13.5px; }
+    .emoji { font-size: 80px; }
+  }
+</style>
+</head>
+<body>
+
+  <main class="phone" role="main" aria-label="Creator Pilot Program signup">
+
+    <!-- Hero illustration: cropped from the original screen so it matches exactly -->
+    <div class="hero">
+      <img class="float-soft" src="illustration.png" alt="Creator with dollar coin and shoppable items" />
+    </div>
+
+    <h1>Join the Creator Pilot<br />Program</h1>
+
+    <p class="desc">
+      This program allows promising creators to join the TikTok Shop before reaching the standard 5K
+      followers.You can post up to 5 shoppable videos and 3 shoppable LIVE streams every week.<span class="learn">Learn more</span>
+    </p>
+
+    <div class="eligible-block">
+      <div class="eligible">You are eligible to apply!</div>
+      <div class="check-row">
+        <span class="tick">✓</span>
+        <span>Meet our <b>Community Guidelines</b></span>
+      </div>
+    </div>
+
+    <p class="terms">
+      By continuing, you agree to the <b>TikTok Shop Creator Terms of Use</b> and acknowledge that you
+      have reviewed the <b>TikTok Shop Creator Privacy Policy</b>. Approval is subject to checks.
+    </p>
+
+    <div class="cta-wrap">
+      <button class="cta" type="button" onclick="this.animate([{transform:'scale(0.96)'},{transform:'scale(1)'}],{duration:180})">Join Now</button>
+    </div>
+
+  </main>
+
+</body>
+</html>
